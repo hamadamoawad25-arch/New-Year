@@ -193,48 +193,46 @@ function getNextJanFirst() {
 
 let targetTime = getNextJanFirst();
 
-function updateCountdown() {
-    // تم تعديل هذه الدالة لاستخدام targetTime الديناميكي ولمنع تكرار الاحتفال
-    const now = Date.now();
-    const diff = targetTime - now;
+function startCountdown() {
     const timerElement = document.getElementById('timer');
+    const nextYear = new Date('1 Jan 2026 00:00:00').getTime();
 
-    // لو العنصر غير موجود ما نعملش حاجة
-    if (!timerElement) return;
+    const interval = setInterval(() => {
+        const now = new Date().getTime();
+        const diff = nextYear - now;
 
-    // أول ما العداد يوصل لصفر أو يقل عنه (لحظة 12:00 صباحاً)
-    if (diff <= 0) {
-        // منع تكرار الاحتفال بواسطة علامة "celebrating"
-        if (!timerElement.classList.contains('celebrating')) {
-            timerElement.classList.add('celebrating');
-            timerElement.innerHTML = `<div> 🎉 بدأت سنتنا الجديدة وانا معي اجمل بنوته ف الدنيا 🎉 </div>`;
+        if (!timerElement) return;
 
-            // فتح السكرول (لو كنت لسه قافله)
-            document.body.classList.remove('locked-screen');
-
-            // تشغيل الألعاب النارية (يتحقق اذا كانت الدالة موجودة)
-            if (typeof launchFireworks === 'function') {
+        if (diff <= 0) {
+            // أول مرة يوصل الصفر: الاحتفال
+            if (!timerElement.classList.contains('celebrating')) {
+                timerElement.innerHTML = `<div> 🎉 بدأت سنتنا الجديده 2026 وانا معي اجمل بنوته ف الدنيا 🎉 </div>`;
+                timerElement.classList.add('celebrating');
                 launchFireworks();
-            } else {
-                console.warn('launchFireworks not defined');
+                document.body.classList.remove('locked-screen');
             }
+
+            clearInterval(interval); // أهم خطوة: إيقاف العداد نهائيًا
+            return;
         }
-        return;
-    }
 
-    // كود عرض الوقت
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+        // حساب الوقت المتبقي
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((diff % (1000 * 60)) / 1000);
 
-    timerElement.innerHTML = `
-        <div>${days} يوم</div>
-        <div>${hours} ساعة</div>
-        <div>${mins} دقيقة</div>
-        <div>${secs} ثانية</div>
-    `;
+        timerElement.innerHTML = `
+            <div>${days} يوم</div>
+            <div>${hours} ساعة</div>
+            <div>${mins} دقيقة</div>
+            <div>${secs} ثانية</div>
+        `;
+    }, 1000);
 }
+
+startCountdown();
+
 
 
 
