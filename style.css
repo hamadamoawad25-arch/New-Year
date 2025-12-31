@@ -1,376 +1,528 @@
- :root {
-     --bg-color: #0b0101;
-     --primary-red: #660000;
-     --accent-gold: #d4af37;
-     --text-color: #f8f1f1;
-     --glass-bg: rgba(15, 2, 2, 0.85);
- }
+:root {
+    --bg-color: #0b0101;
+    --primary-red: #660000;
+    --accent-gold: #d4af37;
+    --text-color: #f8f1f1;
+    --glass-bg: rgba(15, 2, 2, 0.85);
 
- body,
- html {
-     margin: 0;
-     padding: 0;
-     overflow-x: hidden;
-     font-family: 'Cairo', sans-serif;
-     background-color: var(--bg-color);
-     color: var(--text-color);
-     scroll-behavior: smooth;
- }
+    /* التصحيحات: تعريف ألوان مستخدمة في الكود */
+    --primary-color: var(--accent-gold);
+    --secondary-color: rgba(212, 175, 55, 0.2);
+    --secondary-red: #8b0000;
+}
 
- body {
-     background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-         url('https://images.unsplash.com/photo-1467810563316-b5476525c0f9?q=80&w=2069&auto=format&fit=crop');
-     background-attachment: fixed;
-     background-size: cover;
-     background-position: center;
- }
+body,
+html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'Cairo', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    scroll-behavior: smooth;
+}
 
- #lock-screen {
-     position: fixed;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     background: radial-gradient(circle, #2c0000 0%, #000000 100%);
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-     z-index: 9999;
-     transition: 1.5s cubic-bezier(0.65, 0.05, 0.36, 1);
- }
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+        url('https://images.unsplash.com/photo-1467810563316-b5476525c0f9?q=80&w=2069&auto=format&fit=crop');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
 
- .lock-box {
-     background: rgba(255, 255, 255, 0.05);
-     padding: 40px;
-     border-radius: 20px;
-     border: 1px solid var(--accent-gold);
-     text-align: center;
-     backdrop-filter: blur(10px);
-     box-shadow: 0 0 30px rgba(102, 0, 0, 0.5);
- }
+/* --------------------------------------------------------------------------- */
+#lock-screen {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0b0b0b;
+    background-image: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+}
 
- input {
-     padding: 12px;
-     border-radius: 5px;
-     border: 1px solid var(--accent-gold);
-     margin-top: 20px;
-     width: 220px;
-     text-align: center;
-     outline: none;
-     background: rgba(0, 0, 0, 0.5);
-     color: white;
- }
-
- .btn-enter {
-     background: linear-gradient(45deg, var(--primary-red), var(--accent-gold));
-     color: white;
-     padding: 12px 40px;
-     border: none;
-     border-radius: 5px;
-     margin-top: 20px;
-     cursor: pointer;
-     font-weight: bold;
-     transition: 0.3s;
- }
-
- .btn-enter:hover {
-     transform: scale(1.1);
-     box-shadow: 0 0 15px var(--accent-gold);
- }
-
- #main-content {
-     display: none;
- }
-
- header {
-     height: 100vh;
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-     text-align: center;
-     background: rgba(0, 0, 0, 0.3);
- }
-
- h1 {
-     font-family: 'Amiri', serif;
-     font-size: 4.5rem;
-     color: var(--accent-gold);
-     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
- }
-
- .countdown {
-     display: flex;
-     gap: 15px;
-     margin-top: 20px;
-     font-size: 1.4rem;
-     color: var(--accent-gold);
-     font-weight: bold;
-     flex-wrap: wrap;
-     justify-content: center;
- }
-
- .countdown div {
-     background: rgba(102, 0, 0, 0.3);
-     padding: 10px 15px;
-     border-radius: 10px;
-     border: 1px solid rgba(212, 175, 55, 0.3);
-     min-width: 80px;
- }
-
- .heart {
-     color: #ff0000;
-     font-size: 50px;
-     animation: heartbeat 1.2s infinite;
-     margin: 20px 0;
- }
-
- @keyframes heartbeat {
-     0% {
-         transform: scale(1);
-     }
-
-     50% {
-         transform: scale(1.3);
-         filter: drop-shadow(0 0 10px red);
-     }
-
-     100% {
-         transform: scale(1);
-     }
- }
-
- section {
-     padding: 80px 20px;
-     text-align: center;
-     max-width: 900px;
-     margin: 40px auto;
-     background: var(--glass-bg);
-     backdrop-filter: blur(5px);
-     border-radius: 30px;
-     border: 1px solid rgba(212, 175, 55, 0.2);
-     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
- }
-
- .message-card {
-     font-size: 1.3rem;
-     line-height: 1.8;
-     color: var(--text-color);
-     padding: 20px;
- }
-
- .poem-card {
-     background: rgba(0, 0, 0, 0.35);
-     border: 1px solid rgba(212, 175, 55, 0.25);
-     border-radius: 20px;
-     padding: 35px;
-     margin: 30px 0;
-     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-     font-family: 'Scheherazade New', serif;
-     font-size: 1.45rem;
-     line-height: 2.2;
-     text-align: right;
- }
+.lock-box {
+    background: #151515;
+    border: 1px solid #333;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 215, 0, 0.05);
+    /* ظل أسود مع لمحة ذهبية */
+    text-align: center;
+    width: 340px;
+    transition: all 0.4s ease;
+}
 
 
- .poem-card h3 {
-     color: var(--accent-gold);
-     margin-bottom: 15px;
- }
+.heart {
+    font-size: 55px;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 10px #ff0000);
+    animation: pulse 1.5s infinite;
+    display: inline-block;
+}
 
- .letter-container {
-     position: relative;
-     max-width: 600px;
-     height: 400px;
-     margin: 50px auto;
-     cursor: pointer;
-     perspective: 1000px;
- }
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 5px #ff0000);
+    }
 
- .letter-envelope {
-     position: absolute;
-     width: 100%;
-     height: 100%;
-     background: #2a0101;
-     border: 2px solid var(--accent-gold);
-     border-radius: 15px;
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-     z-index: 2;
-     transition: 1s;
-     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
- }
+    50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 20px #ff0000);
+    }
 
- .letter-content {
-     position: absolute;
-     width: 95%;
-     height: 100%;
-     background: #fffcf2;
-     color: #333;
-     padding: 30px;
-     border-radius: 10px;
-     transform: rotateX(-90deg);
-     transform-origin: top;
-     transition: 1s;
-     z-index: 1;
-     overflow-y: auto;
-     text-align: right;
-     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-     font-family: 'Amiri', serif;
-     font-size: 1.15rem;
- }
+    100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 5px #ff0000);
+    }
+}
 
- .letter-container.open .letter-envelope {
-     transform: rotateY(180deg);
-     opacity: 0;
- }
+/* النصوص */
+.lock-box p {
+    color: #e0e0e0;
+    /* رمادي فاتح جداً */
+    font-size: 18px;
+    margin-bottom: 25px;
+    letter-spacing: 0.5px;
+}
 
- .letter-container.open .letter-content {
-     transform: rotateX(0deg);
- }
+/* حقل إدخال كلمة السر */
+#passInput {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #444;
+    border-radius: 12px;
+    outline: none;
+    text-align: center;
+    background: #000;
+    /* خلفية الإدخال سوداء */
+    color: #ffd700;
+    /* النص المكتوب يكون ذهبي */
+    font-size: 18px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
 
- .gallery {
-     display: grid;
-     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-     gap: 15px;
-     padding: 20px;
- }
+#passInput:focus {
+    border-color: #ffd700;
+    /* يتحول للذهبي عند الضغط */
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
 
- .gallery img {
-     width: 100%;
-     height: 300px;
-     object-fit: cover;
-     border-radius: 15px;
-     transition: 0.5s;
- }
+/* زر الدخول الفخم */
+.btn-enter {
+    background: #ffd700;
+    /* لون ذهبي */
+    color: #000;
+    /* نص أسود على زر ذهبي */
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 50%;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
 
- .gallery img:hover {
-     transform: scale(1.03);
-     box-shadow: 0 0 20px var(--accent-gold);
- }
+.btn-enter:hover {
+    background: #ffc400;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+}
+
+/* رسالة الخطأ */
+#error-msg {
+    font-size: 14px;
+    margin-top: 20px;
+    background: rgba(255, 77, 77, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    border-left: 4px solid #ff4d4d;
+}
+
+/* تأثير الاختفاء السلس لشاشة القفل */
+.fade-out {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    pointer-events: none;
+    /* عشان ما تمنعش الضغط على اللي تحتها وهي بتختفي */
+}
+
+#main-content {
+    opacity: 0;
+    transform: translateY(20px);
+    /* يبدأ نازل لتحت شوية */
+    transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+#main-content.show {
+    opacity: 1;
+    transform: translateY(0);
+    /* يطلع لمكانه الطبيعي وهو بيظهر */
+}
+
+/* ---------------------------------------------------------------- */
+header {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-family: 'Amiri', serif;
+    font-size: 4.5rem;
+    color: var(--accent-gold);
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.countdown {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    font-size: 1.4rem;
+    color: var(--accent-gold);
+    font-weight: bold;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.countdown div {
+    background: rgba(102, 0, 0, 0.3);
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    min-width: 80px;
+}
+
+.heart {
+    color: #ff0000;
+    font-size: 50px;
+    animation: heartbeat 1.2s infinite;
+    margin: 20px 0;
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+        filter: drop-shadow(0 0 10px red);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+section {
+    padding: 80px 20px;
+    text-align: center;
+    max-width: 900px;
+    margin: 40px auto;
+    background: var(--glass-bg);
+    backdrop-filter: blur(5px);
+    border-radius: 30px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.message-card {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    padding: 20px;
+}
+
+.poem-card {
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 20px;
+    padding: 35px;
+    margin: 30px 0;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    font-family: 'Scheherazade New', serif;
+    font-size: 1.45rem;
+    line-height: 2.2;
+    text-align: right;
+}
 
 
- .reasons-list li {
-     margin-bottom: 20px;
-     padding: 15px;
-     background: rgba(255, 255, 255, 0.03);
-     border-radius: 10px;
-     border-right: 4px solid var(--accent-gold);
-     transition: 0.3s;
- }
+.poem-card h3 {
+    color: var(--accent-gold);
+    margin-bottom: 15px;
+}
 
- .reasons-list li:hover {
-     background: rgba(255, 255, 255, 0.08);
-     transform: translateX(-10px);
- }
+.letter-container {
+    position: relative;
+    max-width: 600px;
+    height: 400px;
+    margin: 50px auto;
+    cursor: pointer;
+    perspective: 1000px;
+}
 
- .music-player {
-     position: fixed;
-     bottom: 20px;
-     right: 20px;
-     z-index: 1000;
- }
+.letter-envelope {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #2a0101;
+    border: 2px solid var(--accent-gold);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    transition: 1s;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+}
 
- .music-btn {
-     background: var(--accent-gold);
-     border: none;
-     width: 50px;
-     height: 50px;
-     border-radius: 50%;
-     cursor: pointer;
-     font-size: 20px;
-     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
- }
+.letter-content {
+    position: absolute;
+    width: 95%;
+    height: 100%;
+    background: #fffcf2;
+    color: #333;
+    padding: 30px;
+    border-radius: 10px;
+    transform: rotateX(-90deg);
+    transform-origin: top;
+    transition: 1s;
+    z-index: 1;
+    overflow-y: auto;
+    text-align: right;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    font-family: 'Amiri', serif;
+    font-size: 1.15rem;
+}
 
- footer {
-     padding: 60px;
-     background: rgba(0, 0, 0, 0.9);
-     color: var(--accent-gold);
-     font-family: 'Dancing Script', cursive;
-     font-size: 1.8rem;
-     border-top: 1px solid var(--accent-gold);
-     text-align: center;
- }
+.letter-container.open .letter-envelope {
+    transform: rotateY(180deg);
+    opacity: 0;
+}
 
- /* ------------------------------------------------------------------------------ */
- /* منع تحديد النص */
- * {
-     -webkit-user-select: none;
-     -moz-user-select: none;
-     -ms-user-select: none;
-     user-select: none;
- }
+.letter-container.open .letter-content {
+    transform: rotateX(0deg);
+}
 
- img {
-     pointer-events: none;
- }
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
 
- /* ========================================= */
- :root {
-     --accent-gold: #D4AF37;
- }
+.gallery img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: 0.5s;
+}
 
- #eye-section {
-     padding: 80px 0;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     background: radial-gradient(circle, rgba(212, 175, 55, 0.08), rgba(0, 0, 0, 0.95));
-     overflow: hidden;
- }
+.gallery img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px var(--accent-gold);
+}
 
- .eye-wrapper {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     gap: 30px;
-     text-align: center;
- }
 
- /* التنسيق الأساسي للصورة */
- .eye-wrapper img {
-     width: 340px;
-     max-width: 90%;
-     border-radius: 25px;
-     box-shadow:
-         0 0 25px rgba(212, 175, 55, 0.3),
-         0 0 60px rgba(102, 0, 0, 0.4);
- }
+.reasons-list li {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    border-right: 4px solid var(--accent-gold);
+    transition: 0.3s;
+}
 
- /* كلاس النبض: يعمل بشكل مستمر */
- .breathing-image {
-     animation: eyeBreath 4s ease-in-out infinite;
- }
+.reasons-list li:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(-10px);
+}
 
- .eye-wrapper p {
-     font-size: 1.8rem;
-     color: var(--accent-gold);
-     font-family: 'Amiri', serif;
-     letter-spacing: 1px;
-     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
- }
+.music-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
 
- /* حركة النبض (توسيع وتقليص مع توهج) */
- @keyframes eyeBreath {
-     0% {
-         transform: scale(1);
-         filter: brightness(0.9);
-     }
+.music-btn {
+    background: var(--accent-gold);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
 
-     50% {
-         transform: scale(1.04);
-         /* نبض خفيف */
-         filter: brightness(1.1);
-         box-shadow:
-             0 0 40px rgba(212, 175, 55, 0.5),
-             0 0 80px rgba(102, 0, 0, 0.3);
-     }
+footer {
+    padding: 60px;
+    background: rgba(0, 0, 0, 0.9);
+    color: var(--accent-gold);
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    border-top: 1px solid var(--accent-gold);
+    text-align: center;
+}
 
-     100% {
-         transform: scale(1);
-         filter: brightness(0.9);
-     }
- }
+/* ------------------------------------------------------------------------------ */
+/* منع تحديد النص */
+* {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+img {
+    pointer-events: none;
+}
+
+/* ========================================= */
+:root {
+    --accent-gold: #D4AF37;
+}
+
+#eye-section {
+    padding: 80px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.08), rgba(0, 0, 0, 0.95));
+    overflow: hidden;
+}
+
+.eye-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    text-align: center;
+}
+
+/* التنسيق الأساسي للصورة */
+.eye-wrapper img {
+    width: 340px;
+    max-width: 90%;
+    border-radius: 25px;
+    box-shadow:
+        0 0 25px rgba(212, 175, 55, 0.3),
+        0 0 60px rgba(102, 0, 0, 0.4);
+}
+
+/* كلاس النبض: يعمل بشكل مستمر */
+.breathing-image {
+    animation: eyeBreath 4s ease-in-out infinite;
+}
+
+.eye-wrapper p {
+    font-size: 1.8rem;
+    color: var(--accent-gold);
+    font-family: 'Amiri', serif;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* حركة النبض (توسيع وتقليص مع توهج) */
+@keyframes eyeBreath {
+    0% {
+        transform: scale(1);
+        filter: brightness(0.9);
+    }
+
+    50% {
+        transform: scale(1.04);
+        /* نبض خفيف */
+        filter: brightness(1.1);
+        box-shadow:
+            0 0 40px rgba(212, 175, 55, 0.5),
+            0 0 80px rgba(102, 0, 0, 0.3);
+    }
+
+    100% {
+        transform: scale(1);
+        filter: brightness(0.9);
+    }
+}
+
+.page {
+    display: none;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.page p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+}
+
+.page button {
+    padding: 12px 30px;
+    border-radius: 50px;
+    border: none;
+    background: var(--primary-color);
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+}
+
+.page button:hover {
+    background: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+#interactive-pages {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: #000;
+}
+
+/* كلاس قفل الشاشة */
+.locked-screen {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
